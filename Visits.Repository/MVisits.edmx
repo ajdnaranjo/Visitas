@@ -1,0 +1,320 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="VisitsDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ClientID" />
+          </Key>
+          <Property Name="ClientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Document" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="DocumentType" Type="int" Nullable="false" />
+          <Property Name="ClientName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="ContactName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="DocumentType">
+          <Key>
+            <PropertyRef Name="DocumentTypeID" />
+          </Key>
+          <Property Name="DocumentTypeID" Type="int" Nullable="false" />
+          <Property Name="Abreviation" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Seller">
+          <Key>
+            <PropertyRef Name="SellerID" />
+          </Key>
+          <Property Name="SellerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Document" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="DocumentType" Type="int" Nullable="false" />
+          <Property Name="SellerName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Visits">
+          <Key>
+            <PropertyRef Name="VisitsID" />
+          </Key>
+          <Property Name="VisitsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientID" Type="int" Nullable="false" />
+          <Property Name="SellerID" Type="int" Nullable="false" />
+          <Property Name="Observations" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="VistDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Client__Document__1BC821DD">
+          <End Role="DocumentType" Type="Self.DocumentType" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentType">
+              <PropertyRef Name="DocumentTypeID" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="DocumentType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Seller__Document__1CBC4616">
+          <End Role="DocumentType" Type="Self.DocumentType" Multiplicity="1" />
+          <End Role="Seller" Type="Self.Seller" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentType">
+              <PropertyRef Name="DocumentTypeID" />
+            </Principal>
+            <Dependent Role="Seller">
+              <PropertyRef Name="DocumentType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Visits__ClientID__29221CFB">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Visits" Type="Self.Visits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="Visits">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Visits__SellerID__2A164134">
+          <End Role="Seller" Type="Self.Seller" Multiplicity="1" />
+          <End Role="Visits" Type="Self.Visits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seller">
+              <PropertyRef Name="SellerID" />
+            </Principal>
+            <Dependent Role="Visits">
+              <PropertyRef Name="SellerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VisitsDatabaseModelStoreContainer">
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DocumentType" EntityType="Self.DocumentType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Seller" EntityType="Self.Seller" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Visits" EntityType="Self.Visits" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Client__Document__1BC821DD" Association="Self.FK__Client__Document__1BC821DD">
+            <End Role="DocumentType" EntitySet="DocumentType" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Seller__Document__1CBC4616" Association="Self.FK__Seller__Document__1CBC4616">
+            <End Role="DocumentType" EntitySet="DocumentType" />
+            <End Role="Seller" EntitySet="Seller" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Visits__ClientID__29221CFB" Association="Self.FK__Visits__ClientID__29221CFB">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Visits" EntitySet="Visits" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Visits__SellerID__2A164134" Association="Self.FK__Visits__SellerID__2A164134">
+            <End Role="Seller" EntitySet="Seller" />
+            <End Role="Visits" EntitySet="Visits" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="VisitsDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="VisitsDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clients" EntityType="VisitsDatabaseModel.Client" />
+          <EntitySet Name="DocumentTypes" EntityType="VisitsDatabaseModel.DocumentType" />
+          <EntitySet Name="Sellers" EntityType="VisitsDatabaseModel.Seller" />
+          <EntitySet Name="Visits" EntityType="VisitsDatabaseModel.Visit" />
+          <AssociationSet Name="FK__Client__Document__1BC821DD" Association="VisitsDatabaseModel.FK__Client__Document__1BC821DD">
+            <End Role="DocumentType" EntitySet="DocumentTypes" />
+            <End Role="Client" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Visits__ClientID__19DFD96B" Association="VisitsDatabaseModel.FK__Visits__ClientID__19DFD96B">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="Visit" EntitySet="Visits" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Seller__Document__1CBC4616" Association="VisitsDatabaseModel.FK__Seller__Document__1CBC4616">
+            <End Role="DocumentType" EntitySet="DocumentTypes" />
+            <End Role="Seller" EntitySet="Sellers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Visits__SellerID__1AD3FDA4" Association="VisitsDatabaseModel.FK__Visits__SellerID__1AD3FDA4">
+            <End Role="Seller" EntitySet="Sellers" />
+            <End Role="Visit" EntitySet="Visits" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ClientID" />
+          </Key>
+          <Property Name="ClientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Document" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DocumentType" Type="Int32" Nullable="false" />
+          <Property Name="ClientName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ContactName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DocumentType1" Relationship="VisitsDatabaseModel.FK__Client__Document__1BC821DD" FromRole="Client" ToRole="DocumentType" />
+          <NavigationProperty Name="Visits" Relationship="VisitsDatabaseModel.FK__Visits__ClientID__19DFD96B" FromRole="Client" ToRole="Visit" />
+        </EntityType>
+        <EntityType Name="DocumentType">
+          <Key>
+            <PropertyRef Name="DocumentTypeID" />
+          </Key>
+          <Property Name="DocumentTypeID" Type="Int32" Nullable="false" />
+          <Property Name="Abreviation" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Clients" Relationship="VisitsDatabaseModel.FK__Client__Document__1BC821DD" FromRole="DocumentType" ToRole="Client" />
+          <NavigationProperty Name="Sellers" Relationship="VisitsDatabaseModel.FK__Seller__Document__1CBC4616" FromRole="DocumentType" ToRole="Seller" />
+        </EntityType>
+        <EntityType Name="Seller">
+          <Key>
+            <PropertyRef Name="SellerID" />
+          </Key>
+          <Property Name="SellerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Document" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DocumentType" Type="Int32" Nullable="false" />
+          <Property Name="SellerName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DocumentType1" Relationship="VisitsDatabaseModel.FK__Seller__Document__1CBC4616" FromRole="Seller" ToRole="DocumentType" />
+          <NavigationProperty Name="Visits" Relationship="VisitsDatabaseModel.FK__Visits__SellerID__1AD3FDA4" FromRole="Seller" ToRole="Visit" />
+        </EntityType>
+        <EntityType Name="Visit">
+          <Key>
+            <PropertyRef Name="VisitsID" />
+          </Key>
+          <Property Name="VisitsID" Type="Int32" Nullable="false" />
+          <Property Name="ClientID" Type="Int32" Nullable="false" />
+          <Property Name="SellerID" Type="Int32" Nullable="false" />
+          <Property Name="Observations" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VistDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="VisitsDatabaseModel.FK__Visits__ClientID__19DFD96B" FromRole="Visit" ToRole="Client" />
+          <NavigationProperty Name="Seller" Relationship="VisitsDatabaseModel.FK__Visits__SellerID__1AD3FDA4" FromRole="Visit" ToRole="Seller" />
+        </EntityType>
+        <Association Name="FK__Client__Document__1BC821DD">
+          <End Type="VisitsDatabaseModel.DocumentType" Role="DocumentType" Multiplicity="1" />
+          <End Type="VisitsDatabaseModel.Client" Role="Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentType">
+              <PropertyRef Name="DocumentTypeID" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="DocumentType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Visits__ClientID__19DFD96B">
+          <End Type="VisitsDatabaseModel.Client" Role="Client" Multiplicity="1" />
+          <End Type="VisitsDatabaseModel.Visit" Role="Visit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="Visit">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Seller__Document__1CBC4616">
+          <End Type="VisitsDatabaseModel.DocumentType" Role="DocumentType" Multiplicity="1" />
+          <End Type="VisitsDatabaseModel.Seller" Role="Seller" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentType">
+              <PropertyRef Name="DocumentTypeID" />
+            </Principal>
+            <Dependent Role="Seller">
+              <PropertyRef Name="DocumentType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Visits__SellerID__1AD3FDA4">
+          <End Type="VisitsDatabaseModel.Seller" Role="Seller" Multiplicity="1" />
+          <End Type="VisitsDatabaseModel.Visit" Role="Visit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seller">
+              <PropertyRef Name="SellerID" />
+            </Principal>
+            <Dependent Role="Visit">
+              <PropertyRef Name="SellerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="VisitsDatabaseModelStoreContainer" CdmEntityContainer="VisitsDatabaseEntities">
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="VisitsDatabaseModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+                <ScalarProperty Name="Document" ColumnName="Document" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocumentTypes">
+            <EntityTypeMapping TypeName="VisitsDatabaseModel.DocumentType">
+              <MappingFragment StoreEntitySet="DocumentType">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Abreviation" ColumnName="Abreviation" />
+                <ScalarProperty Name="DocumentTypeID" ColumnName="DocumentTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sellers">
+            <EntityTypeMapping TypeName="VisitsDatabaseModel.Seller">
+              <MappingFragment StoreEntitySet="Seller">
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="SellerName" ColumnName="SellerName" />
+                <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+                <ScalarProperty Name="Document" ColumnName="Document" />
+                <ScalarProperty Name="SellerID" ColumnName="SellerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Visits">
+            <EntityTypeMapping TypeName="VisitsDatabaseModel.Visit">
+              <MappingFragment StoreEntitySet="Visits">
+                <ScalarProperty Name="VistDate" ColumnName="VistDate" />
+                <ScalarProperty Name="Observations" ColumnName="Observations" />
+                <ScalarProperty Name="SellerID" ColumnName="SellerID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="VisitsID" ColumnName="VisitsID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="SynchronizePropertyFacets" Value="False" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
