@@ -12,36 +12,14 @@ namespace Visits.Repositories
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using System.Data.Common;
-    using System.Data.Entity.Core.EntityClient;
-    using System.Configuration;
-
+    
     public partial class VisitsDatabaseEntities : DbContext
     {
-        public VisitsDatabaseEntities() : base(GetSqlConnection(), true)
+        public VisitsDatabaseEntities()
+            : base("name=VisitsDatabaseEntities")
         {
         }
-
-
-        public static DbConnection GetSqlConnection()
-        {
-            // Initialize the EntityConnectionStringBuilder. 
-            EntityConnectionStringBuilder entityBuilder = new EntityConnectionStringBuilder();
-
-            var connectionSettings = ConfigurationManager.ConnectionStrings["VisitsDatabaseEntities"];
-
-            // Set the provider name. 
-            entityBuilder.Provider = connectionSettings.ProviderName;
-
-            // Set the provider-specific connection string. 
-            entityBuilder.ProviderConnectionString = connectionSettings.ConnectionString;
-
-            // Set the Metadata location. 
-            entityBuilder.Metadata = "res://*/MVisits.csdl|res://*/MVisits.ssdl|res://*/MVisits.msl";
-           
-            return new EntityConnection(entityBuilder.ToString());
-        }
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

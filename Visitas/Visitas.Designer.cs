@@ -53,8 +53,18 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Page2 = new System.Windows.Forms.TabPage();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.txtSearchObservations = new System.Windows.Forms.TextBox();
+            this.txtIDSearch = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.cbDocTypeSearch = new System.Windows.Forms.ComboBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.Page1.SuspendLayout();
+            this.Page2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -69,6 +79,7 @@
             // 
             // Page1
             // 
+            this.Page1.Controls.Add(this.pictureBox1);
             this.Page1.Controls.Add(this.label11);
             this.Page1.Controls.Add(this.cbDocType);
             this.Page1.Controls.Add(this.btnSave);
@@ -289,7 +300,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(145, 25);
+            this.label1.Location = new System.Drawing.Point(249, 25);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(289, 24);
             this.label1.TabIndex = 0;
@@ -297,19 +308,98 @@
             // 
             // Page2
             // 
+            this.Page2.Controls.Add(this.btnSearch);
+            this.Page2.Controls.Add(this.txtSearchObservations);
+            this.Page2.Controls.Add(this.txtIDSearch);
+            this.Page2.Controls.Add(this.label14);
+            this.Page2.Controls.Add(this.cbDocTypeSearch);
+            this.Page2.Controls.Add(this.label13);
+            this.Page2.Controls.Add(this.label12);
             this.Page2.Location = new System.Drawing.Point(4, 22);
             this.Page2.Name = "Page2";
             this.Page2.Padding = new System.Windows.Forms.Padding(3);
-            this.Page2.Size = new System.Drawing.Size(556, 518);
+            this.Page2.Size = new System.Drawing.Size(573, 518);
             this.Page2.TabIndex = 1;
             this.Page2.Text = "Buscar Visitas";
             this.Page2.UseVisualStyleBackColor = true;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(418, 62);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 7;
+            this.btnSearch.Text = "Buscar";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // txtSearchObservations
+            // 
+            this.txtSearchObservations.Location = new System.Drawing.Point(12, 100);
+            this.txtSearchObservations.Multiline = true;
+            this.txtSearchObservations.Name = "txtSearchObservations";
+            this.txtSearchObservations.Size = new System.Drawing.Size(544, 383);
+            this.txtSearchObservations.TabIndex = 6;
+            // 
+            // txtIDSearch
+            // 
+            this.txtIDSearch.Location = new System.Drawing.Point(270, 64);
+            this.txtIDSearch.Name = "txtIDSearch";
+            this.txtIDSearch.Size = new System.Drawing.Size(126, 20);
+            this.txtIDSearch.TabIndex = 4;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(191, 66);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(73, 13);
+            this.label14.TabIndex = 3;
+            this.label14.Text = "Identificación:";
+            // 
+            // cbDocTypeSearch
+            // 
+            this.cbDocTypeSearch.FormattingEnabled = true;
+            this.cbDocTypeSearch.Location = new System.Drawing.Point(102, 63);
+            this.cbDocTypeSearch.Name = "cbDocTypeSearch";
+            this.cbDocTypeSearch.Size = new System.Drawing.Size(83, 21);
+            this.cbDocTypeSearch.TabIndex = 2;
+            // 
+            // label13
+            // 
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(8, 18);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(559, 21);
+            this.label13.TabIndex = 1;
+            this.label13.Text = "Buscar visitas";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(9, 66);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(87, 13);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "Tipo documento:";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Visits.App.Properties.Resources._2017_08_01;
+            this.pictureBox1.InitialImage = global::Visits.App.Properties.Resources._2017_08_01;
+            this.pictureBox1.Location = new System.Drawing.Point(35, 25);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(208, 69);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 22;
+            this.pictureBox1.TabStop = false;
             // 
             // Visitas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(583, 546);
+            this.ClientSize = new System.Drawing.Size(583, 543);
             this.Controls.Add(this.tabControl1);
             this.IsMdiContainer = true;
             this.MaximizeBox = false;
@@ -319,6 +409,9 @@
             this.tabControl1.ResumeLayout(false);
             this.Page1.ResumeLayout(false);
             this.Page1.PerformLayout();
+            this.Page2.ResumeLayout(false);
+            this.Page2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -350,6 +443,14 @@
         private System.Windows.Forms.TabPage Page2;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox cbDocType;
+        private System.Windows.Forms.TextBox txtIDSearch;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.ComboBox cbDocTypeSearch;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.TextBox txtSearchObservations;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

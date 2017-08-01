@@ -130,7 +130,7 @@
             <End Role="DocumentType" EntitySet="DocumentTypes" />
             <End Role="Client" EntitySet="Clients" />
           </AssociationSet>
-          <AssociationSet Name="FK__Visits__ClientID__19DFD96B" Association="VisitsDatabaseModel.FK__Visits__ClientID__19DFD96B">
+          <AssociationSet Name="FK__Visits__ClientID__29221CFB" Association="VisitsDatabaseModel.FK__Visits__ClientID__29221CFB">
             <End Role="Client" EntitySet="Clients" />
             <End Role="Visit" EntitySet="Visits" />
           </AssociationSet>
@@ -138,7 +138,7 @@
             <End Role="DocumentType" EntitySet="DocumentTypes" />
             <End Role="Seller" EntitySet="Sellers" />
           </AssociationSet>
-          <AssociationSet Name="FK__Visits__SellerID__1AD3FDA4" Association="VisitsDatabaseModel.FK__Visits__SellerID__1AD3FDA4">
+          <AssociationSet Name="FK__Visits__SellerID__2A164134" Association="VisitsDatabaseModel.FK__Visits__SellerID__2A164134">
             <End Role="Seller" EntitySet="Sellers" />
             <End Role="Visit" EntitySet="Visits" />
           </AssociationSet>
@@ -156,7 +156,7 @@
           <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DocumentType1" Relationship="VisitsDatabaseModel.FK__Client__Document__1BC821DD" FromRole="Client" ToRole="DocumentType" />
-          <NavigationProperty Name="Visits" Relationship="VisitsDatabaseModel.FK__Visits__ClientID__19DFD96B" FromRole="Client" ToRole="Visit" />
+          <NavigationProperty Name="Visits" Relationship="VisitsDatabaseModel.FK__Visits__ClientID__29221CFB" FromRole="Client" ToRole="Visit" />
         </EntityType>
         <EntityType Name="DocumentType">
           <Key>
@@ -179,19 +179,19 @@
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DocumentType1" Relationship="VisitsDatabaseModel.FK__Seller__Document__1CBC4616" FromRole="Seller" ToRole="DocumentType" />
-          <NavigationProperty Name="Visits" Relationship="VisitsDatabaseModel.FK__Visits__SellerID__1AD3FDA4" FromRole="Seller" ToRole="Visit" />
+          <NavigationProperty Name="Visits" Relationship="VisitsDatabaseModel.FK__Visits__SellerID__2A164134" FromRole="Seller" ToRole="Visit" />
         </EntityType>
         <EntityType Name="Visit">
           <Key>
             <PropertyRef Name="VisitsID" />
           </Key>
-          <Property Name="VisitsID" Type="Int32" Nullable="false" />
+          <Property Name="VisitsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ClientID" Type="Int32" Nullable="false" />
           <Property Name="SellerID" Type="Int32" Nullable="false" />
           <Property Name="Observations" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="VistDate" Type="DateTime" Nullable="false" />
-          <NavigationProperty Name="Client" Relationship="VisitsDatabaseModel.FK__Visits__ClientID__19DFD96B" FromRole="Visit" ToRole="Client" />
-          <NavigationProperty Name="Seller" Relationship="VisitsDatabaseModel.FK__Visits__SellerID__1AD3FDA4" FromRole="Visit" ToRole="Seller" />
+          <NavigationProperty Name="Client" Relationship="VisitsDatabaseModel.FK__Visits__ClientID__29221CFB" FromRole="Visit" ToRole="Client" />
+          <NavigationProperty Name="Seller" Relationship="VisitsDatabaseModel.FK__Visits__SellerID__2A164134" FromRole="Visit" ToRole="Seller" />
         </EntityType>
         <Association Name="FK__Client__Document__1BC821DD">
           <End Type="VisitsDatabaseModel.DocumentType" Role="DocumentType" Multiplicity="1" />
@@ -205,7 +205,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Visits__ClientID__19DFD96B">
+        <Association Name="FK__Visits__ClientID__29221CFB">
           <End Type="VisitsDatabaseModel.Client" Role="Client" Multiplicity="1" />
           <End Type="VisitsDatabaseModel.Visit" Role="Visit" Multiplicity="*" />
           <ReferentialConstraint>
@@ -229,7 +229,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Visits__SellerID__1AD3FDA4">
+        <Association Name="FK__Visits__SellerID__2A164134">
           <End Type="VisitsDatabaseModel.Seller" Role="Seller" Multiplicity="1" />
           <End Type="VisitsDatabaseModel.Visit" Role="Visit" Multiplicity="*" />
           <ReferentialConstraint>

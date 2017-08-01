@@ -5,14 +5,14 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="98a42707edf2476daa47626dcc2b2598" Name="Diagram1">
-        <EntityTypeShape EntityType="VisitsDatabaseModel.Client" Width="1.5" PointX="3" PointY="4.5" />
+        <EntityTypeShape EntityType="VisitsDatabaseModel.Client" Width="1.5" PointX="3" PointY="1.125" />
         <EntityTypeShape EntityType="VisitsDatabaseModel.DocumentType" Width="1.5" PointX="0.75" PointY="3.25" />
-        <EntityTypeShape EntityType="VisitsDatabaseModel.Seller" Width="1.5" PointX="3" PointY="1.125" />
+        <EntityTypeShape EntityType="VisitsDatabaseModel.Seller" Width="1.5" PointX="3" PointY="4.875" />
         <EntityTypeShape EntityType="VisitsDatabaseModel.Visit" Width="1.5" PointX="5.25" PointY="3.125" />
         <AssociationConnector Association="VisitsDatabaseModel.FK__Client__Document__1BC821DD" />
-        <AssociationConnector Association="VisitsDatabaseModel.FK__Visits__ClientID__19DFD96B" />
+        <AssociationConnector Association="VisitsDatabaseModel.FK__Visits__ClientID__29221CFB" />
         <AssociationConnector Association="VisitsDatabaseModel.FK__Seller__Document__1CBC4616" />
-        <AssociationConnector Association="VisitsDatabaseModel.FK__Visits__SellerID__1AD3FDA4" />
+        <AssociationConnector Association="VisitsDatabaseModel.FK__Visits__SellerID__2A164134" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

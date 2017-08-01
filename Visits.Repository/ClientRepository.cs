@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
-using System.Configuration;
+using System.Linq;
 
 namespace Visits.Repositories
 {
     [Serializable]
     public class ClientRepository
-    {
-        string cnn = ConfigurationManager.ConnectionStrings["VisitsDatabaseEntities"].ToString();
+    {        
 
         public Client GetClientByDocument(string documento, int docType)
         {

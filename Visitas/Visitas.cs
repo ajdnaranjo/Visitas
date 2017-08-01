@@ -26,6 +26,9 @@ namespace Visits.App
             cbDocType.ValueMember = "DocumentTypeID";
             cbDocType.DisplayMember = "Abreviation";
 
+            cbDocTypeSearch.DataSource = clientRespository.GetDocumentTypes();
+            cbDocTypeSearch.ValueMember = "DocumentTypeID";
+            cbDocTypeSearch.DisplayMember = "Abreviation";
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -57,6 +60,7 @@ namespace Visits.App
             txtMail.Text = string.Empty;
             txtAddress.Text = string.Empty;
             txtObservations.Text = string.Empty;
+            cbDocType.SelectedValue = "-1";
         }
 
         private void txtIdentification_KeyPress(object sender, KeyPressEventArgs e)
@@ -70,9 +74,11 @@ namespace Visits.App
         private void FillClientData()
         {
             var clientRepository = new ClientRepository();
+            var visitRepo = new VisitRepository();
             var client = new Client();
 
             client = clientRepository.GetClientByDocument(txtIdentification.Text.Trim(), int.Parse(cbDocType.SelectedValue.ToString()));
+            var visit = visitRepo.GetVisitByID(client.ClientID);
 
             if (client != null)
             {
@@ -81,6 +87,7 @@ namespace Visits.App
                 txtPhone.Text = client.Phone;
                 txtMail.Text = client.Email;
                 txtAddress.Text = client.Address;
+                txtObservations.Text = visit.Observations;
             }
 
         }
@@ -88,6 +95,23 @@ namespace Visits.App
         private void txtIdentification_Leave(object sender, EventArgs e)
         {
             FillClientData();
+        }
+      
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            var repo = new ClientRepository();
+            var repoVisit = new VisitRepository();
+            var client =  repo.GetClientByDocument(txtIDSearch.Text.Trim(), int.Parse(cbDocTypeSearch.SelectedValue.ToString()));
+
+            var visit = repoVisit.GetVisitByID(client.ClientID);
+
+            txtSearchObservations.Text = visit.Observations;
+
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

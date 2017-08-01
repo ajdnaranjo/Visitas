@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Configuration;
+using System.Linq;
 
 namespace Visits.Repositories
 {
     [Serializable]
     public class VisitRepository
-    {
-        string cnn = ConfigurationManager.ConnectionStrings["VisitsDatabaseEntities"].ToString();
+    {        
         public int SaveVisit(Visit saveVisit)
         {
             int id = 0;
@@ -29,6 +28,17 @@ namespace Visits.Repositories
 
         }
 
+        public Visit GetVisitByID(int clientID)
+        {
+            var query = new Visit();
+            using (var context = new VisitsDatabaseEntities())
+            {
+                query = context.Visits.FirstOrDefault(x => x.ClientID == clientID);
+            }
+
+            return query;
+
+        }
 
 
     }
