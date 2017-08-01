@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Visits.Repositories
 {
@@ -28,12 +29,12 @@ namespace Visits.Repositories
 
         }
 
-        public Visit GetVisitByID(int clientID)
+        public List<Visit> GetVisitByID(int clientID)
         {
-            var query = new Visit();
+            var query = new List<Visit>();
             using (var context = new VisitsDatabaseEntities())
             {
-                query = context.Visits.FirstOrDefault(x => x.ClientID == clientID);
+                query = context.Visits.Where(x => x.ClientID == clientID).ToList();
             }
 
             return query;

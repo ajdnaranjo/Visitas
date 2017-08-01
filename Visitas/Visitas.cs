@@ -99,9 +99,15 @@ namespace Visits.App
                 txtPhone.Text = client.Phone;
                 txtMail.Text = client.Email;
                 txtAddress.Text = client.Address;
+                
+                var visits = visitRepo.GetVisitByID(client.ClientID);
 
-                var visit = visitRepo.GetVisitByID(client.ClientID);
-                txtObservations.Text = visit.Observations;
+                var obs = string.Empty;
+                foreach (Visit r in visits)
+                {
+                    obs = obs + " - " + r.Observations;
+                }
+                txtObservations.Text = obs;       
             }
 
         }
@@ -117,9 +123,14 @@ namespace Visits.App
             var repoVisit = new VisitRepository();
             var client =  repo.GetClientByDocument(txtIDSearch.Text.Trim(), int.Parse(cbDocTypeSearch.SelectedValue.ToString()));
 
-            var visit = repoVisit.GetVisitByID(client.ClientID);
+            var visits = repoVisit.GetVisitByID(client.ClientID);
 
-            txtSearchObservations.Text = visit.Observations;
+            var obs = string.Empty;
+            foreach (Visit r in visits)
+            {
+                obs = obs + " - " + r.Observations;
+            }           
+            txtSearchObservations.Text = obs;
 
         }
 
