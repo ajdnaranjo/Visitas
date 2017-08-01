@@ -99,15 +99,7 @@ namespace Visits.App
                 txtPhone.Text = client.Phone;
                 txtMail.Text = client.Email;
                 txtAddress.Text = client.Address;
-                
-                var visits = visitRepo.GetVisitByID(client.ClientID);
-
-                var obs = string.Empty;
-                foreach (Visit r in visits)
-                {
-                    obs = obs + " - " + r.Observations;
-                }
-                txtObservations.Text = obs;       
+                               
             }
 
         }
