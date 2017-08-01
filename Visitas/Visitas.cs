@@ -40,6 +40,19 @@ namespace Visits.App
 
             client = clientRepository.GetClientByDocument(txtIdentification.Text.Trim(), int.Parse(cbDocType.SelectedValue.ToString()));
 
+            if (client == null)
+            {
+                var c = new Client();
+                c.Document = txtIdentification.Text.Trim();
+                c.DocumentType = int.Parse(cbDocType.SelectedValue.ToString());
+                c.ClientName = txtClientName.Text.Trim();
+                c.ContactName = txtContactName.Text.Trim();
+                c.Email = txtMail.Text.Trim();
+                c.Phone = txtPhone.Text.Trim();
+                c.Address = txtAddress.Text.Trim();
+                client = clientRepository.SaveClient(c);
+            }
+
             visit.ClientID = client.ClientID;            
             visit.SellerID = int.Parse(cbSeller.SelectedValue.ToString());
             visit.Observations = txtObservations.Text.Trim();
@@ -77,8 +90,7 @@ namespace Visits.App
             var visitRepo = new VisitRepository();
             var client = new Client();
 
-            client = clientRepository.GetClientByDocument(txtIdentification.Text.Trim(), int.Parse(cbDocType.SelectedValue.ToString()));
-            var visit = visitRepo.GetVisitByID(client.ClientID);
+            client = clientRepository.GetClientByDocument(txtIdentification.Text.Trim(), int.Parse(cbDocType.SelectedValue.ToString()));            
 
             if (client != null)
             {
@@ -87,6 +99,8 @@ namespace Visits.App
                 txtPhone.Text = client.Phone;
                 txtMail.Text = client.Email;
                 txtAddress.Text = client.Address;
+
+                var visit = visitRepo.GetVisitByID(client.ClientID);
                 txtObservations.Text = visit.Observations;
             }
 

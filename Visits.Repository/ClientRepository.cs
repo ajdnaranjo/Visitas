@@ -38,5 +38,30 @@ namespace Visits.Repositories
             return query;
 
         }
+
+        public Client SaveClient(Client client)
+        {
+            var cl = new Client();
+            using (var context = new VisitsDatabaseEntities())
+            {
+                var c = new Client();
+                c = new Client();
+                c.Document = client.Document;
+                c.DocumentType = client.DocumentType;
+                c.ClientName = client.ClientName;
+                c.ContactName = client.ContactName;
+                c.Email = client.Email;
+                c.Phone = client.Phone;
+                c.Address = client.Address;
+
+                context.Clients.Add(c);
+
+                context.SaveChanges();
+
+                cl = c;
+            }
+
+            return cl;
+        }
     }
 }
