@@ -105,7 +105,9 @@ namespace Visits.App
                 txtPhone.Text = client.Phone;
                 txtMail.Text = client.Email;
                 txtAddress.Text = client.Address;
-                               
+                txtPosition.Text = client.Position;
+                txtConsumption.Text = client.Consumption;
+                txtFabric.Text = client.Fabric;                               
             }
 
         }
