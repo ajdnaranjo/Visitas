@@ -28,6 +28,9 @@ namespace Visits.Repositories
         public string Email { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
+        public string Position { get; set; }
+        public string Consumption { get; set; }
+        public string Fabric { get; set; }
     
         public virtual DocumentType DocumentType1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

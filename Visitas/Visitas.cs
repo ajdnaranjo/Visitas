@@ -38,20 +38,22 @@ namespace Visits.App
             var visit = new Visit();
             var client = new Client();
 
-            client = clientRepository.GetClientByDocument(txtIdentification.Text.Trim(), int.Parse(cbDocType.SelectedValue.ToString()));
+            //client = clientRepository.GetClientByDocument(txtIdentification.Text.Trim(), int.Parse(cbDocType.SelectedValue.ToString()));
 
-            if (client == null)
-            {
-                var c = new Client();
-                c.Document = txtIdentification.Text.Trim();
-                c.DocumentType = int.Parse(cbDocType.SelectedValue.ToString());
-                c.ClientName = txtClientName.Text.Trim();
-                c.ContactName = txtContactName.Text.Trim();
-                c.Email = txtMail.Text.Trim();
-                c.Phone = txtPhone.Text.Trim();
-                c.Address = txtAddress.Text.Trim();
-                client = clientRepository.SaveClient(c);
-            }
+           
+            var c = new Client();
+            c.Document = txtIdentification.Text.Trim();
+            c.DocumentType = int.Parse(cbDocType.SelectedValue.ToString());
+            c.ClientName = txtClientName.Text.Trim();
+            c.ContactName = txtContactName.Text.Trim();
+            c.Email = txtMail.Text.Trim();
+            c.Phone = txtPhone.Text.Trim();
+            c.Address = txtAddress.Text.Trim();
+            c.Position = txtPosition.Text.Trim();
+            c.Consumption = txtConsumption.Text.Trim();
+            c.Fabric = txtFabric.Text.Trim();
+            client = clientRepository.SaveClient(c);
+          
 
             visit.ClientID = client.ClientID;            
             visit.SellerID = int.Parse(cbSeller.SelectedValue.ToString());
@@ -74,6 +76,10 @@ namespace Visits.App
             txtAddress.Text = string.Empty;
             txtObservations.Text = string.Empty;
             cbDocType.SelectedValue = "-1";
+            txtIdentification.Text = string.Empty;
+            txtPosition.Text = string.Empty;
+            txtConsumption.Text = string.Empty;
+            txtFabric.Text = string.Empty;
         }
 
         private void txtIdentification_KeyPress(object sender, KeyPressEventArgs e)
@@ -106,7 +112,9 @@ namespace Visits.App
 
         private void txtIdentification_Leave(object sender, EventArgs e)
         {
-            FillClientData();
+            if (cbDocType.SelectedValue.ToString() != "-1" &&  txtIdentification.Text.Trim() != string.Empty)
+                FillClientData();
+            
         }
       
         private void btnSearch_Click(object sender, EventArgs e)

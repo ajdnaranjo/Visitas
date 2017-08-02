@@ -17,6 +17,9 @@
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
           <Property Name="Phone" Type="nvarchar" MaxLength="20" />
           <Property Name="Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="Position" Type="nvarchar" MaxLength="100" />
+          <Property Name="Consumption" Type="nvarchar" MaxLength="200" />
+          <Property Name="Fabric" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="DocumentType">
           <Key>
@@ -157,6 +160,9 @@
           <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DocumentType1" Relationship="VisitsDatabaseModel.FK__Client__Document__1BC821DD" FromRole="Client" ToRole="DocumentType" />
           <NavigationProperty Name="Visits" Relationship="VisitsDatabaseModel.FK__Visits__ClientID__29221CFB" FromRole="Client" ToRole="Visit" />
+          <Property Name="Position" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Consumption" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Fabric" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="DocumentType">
           <Key>
@@ -250,6 +256,9 @@
           <EntitySetMapping Name="Clients">
             <EntityTypeMapping TypeName="VisitsDatabaseModel.Client">
               <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="Fabric" ColumnName="Fabric" />
+                <ScalarProperty Name="Consumption" ColumnName="Consumption" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
